@@ -1,0 +1,38 @@
+{% extends 'base.html' %} <!-- Extiende la plantilla base.html -->
+
+{% block contenido %} <!-- Inicia el bloque de contenido -->
+
+<h2>Lista de categorías</h2> <!-- Título de la página -->
+
+<a href="{% url 'agregar_categoria' %}" class="btn btn-success mb-3">Agregar categoría</a> <!-- Botón para agregar una nueva categoría -->
+
+<table class="table table-bordered"> <!-- Inicia la tabla con clases de Bootstrap -->
+    <tr> <!-- Fila de encabezado de la tabla -->
+
+        <th>id</th>
+        <th>id categoria</th> <!-- Encabezado: Nombre -->
+        <th>nombre</th> <!-- Encabezado: Descripción -->
+        <th>descripcion</th> <!-- Encabezado: Precio (si aplica) -->
+        <th>estado</th>
+        <th>
+            acciones
+        <th> <!-- Encabezado: Acciones -->
+    </tr>
+
+    {% for item in categoria %} <!-- Itera sobre la lista de categorías -->
+    <tr> <!-- Fila para cada categoría -->
+
+        <td>{{ item.id }}</td> <!-- Muestra el nombre -->
+        <td>{{ item.idcategoria }}</td>
+        <td>{{ item.nombre }}</td> <!-- Muestra la descripción -->
+        <td>{{ item.descripcion }}</td>
+        <td>{{ item.estado }}</td> <!-- Muestra el precio si aplica -->
+        <td> <!-- Columna de acciones -->
+            <a href="{% url 'editar_categoria' item.id %}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{% url 'eliminar_categoria' item.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

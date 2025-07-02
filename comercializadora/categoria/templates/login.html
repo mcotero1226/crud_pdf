@@ -1,0 +1,28 @@
+{% extends 'base.html' %} <!-- Hereda la plantilla base.html -->
+
+{% block contenido %} <!-- Inicia el bloque de contenido que será insertado en base.html -->
+<h2>Iniciar sesión</h2> <!-- Título de la página -->
+
+<!-- Mostrar mensajes de error -->
+{% if form.errors %} <!-- Si hay errores en el formulario -->
+    <div class="alert alert-danger">
+        Nombre de usuario o contraseña incorrectos. <!-- Mensaje de error para el usuario -->
+    </div>
+{% endif %}
+
+<form method="POST"> <!-- Formulario que envía datos por POST -->
+    {% csrf_token %} <!-- Token de seguridad CSRF de Django -->
+
+    <div class="mb-3"> <!-- Grupo de formulario para el nombre de usuario -->
+        <label for="username" class="form-label">Nombre de usuario</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+
+    <div class="mb-3"> <!-- Grupo de formulario para la contraseña -->
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+</form>
+{% endblock %} <!-- Fin del bloque de contenido -->
